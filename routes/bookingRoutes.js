@@ -3,14 +3,15 @@ const Booking = require('../model/bookingModel');
 const router = express.Router();
 
 router.post('/create', async(req,res) => {
-    const {name, number, email, location, date, time, desc} = req.body;
+    const {_id, name, number, email, location, date, time, desc} = req.body;
 
-    if(!name || !number || !email || !location || !date || !time || !desc){
+    if(!name || !number || !email || !location || !date || !time){
         res.status(400);
         throw new Error('Please include all fields');
     }
 
     const booking = await Booking.create({
+        _id,
         name,
         number,
         email,
@@ -22,7 +23,7 @@ router.post('/create', async(req,res) => {
 
     booking.save();
 
-    res.send("Booking created successfully");
+    res.send(req.body);
 });
 
 router.get('/', async(req,res) => {

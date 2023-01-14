@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = mongoose.Schema({
+    _id:{
+        type:Number
+    },
     name:{
         type:String,
         required:true
@@ -28,7 +31,7 @@ const bookingSchema = mongoose.Schema({
     },
     desc:{
         type:String,
-        requred:false
+        required:false
     }
 });
 
